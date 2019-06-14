@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CalendarTrendView</string>
+    <string name="title">Here\'s a calendar trend view:</string>
+    <string name="welfare">"Bien-être"</string>
+    <string name="serenity">"Sérénité"</string>
+    <string name="relation">"Relationnel"</string>
+    <string name="health">"Santé"</string>
+    <string name="clear">Clear</string>
+    <string name="redraw">Redraw</string>
+</resources>

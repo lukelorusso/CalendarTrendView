@@ -1,0 +1,34 @@
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+ext {
+
+    // APP VERSION
+    androidVersionCode          = 1
+    androidVersionName          = '1.0'
+
+    // ANDROID VERSION
+    androidCompileSdkVersion    = 28
+    androidMinSdkVersion        = 21
+    androidTargetSdkVersion     = 28
+
+    // KOTLIN
+    kotlinStdlib                = "org.jetbrains.kotlin:kotlin-stdlib:${ext.kotlin_version}"
+
+    // ANDROID LIB
+    androidAppCompatXVersion    = '1.0.2'
+    androidXAppCompat           = "androidx.appcompat:appcompat:$androidAppCompatXVersion"
+
+    // THREE TEN ABP
+    threeTenABPVersion          = '1.2.1'
+    threeTenABP                 = "com.jakewharton.threetenabp:threetenabp:$threeTenABPVersion"
+
+    // LUKELORUSSO
+    simplePaperViewVersion      = '1.0'
+    simplePaperView             = "com.lukelorusso:simplepaperview:$simplePaperViewVersion"
+
+}

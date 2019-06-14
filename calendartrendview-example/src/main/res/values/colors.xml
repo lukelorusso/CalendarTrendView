@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#ff7301</color>
+    <color name="graphBackground">#f6f6f6</color>
+    <color name="graphWelfare">#4dd0e1</color>
+    <color name="graphSerenity">#9474cd</color>
+    <color name="graphRelation">#f15e90</color>
+    <color name="graphHealth">#f49d56</color>
+    <color name="graphStepLine">#d4d4d4</color>
+    <color name="graphTextLabelDay">#2c343d</color>
+    <color name="graphTextLabelMonth">#AA2c343d</color>
+</resources>
