@@ -224,13 +224,13 @@ class CalendarTrendView @JvmOverloads constructor(
 
                     labelsToDraw.add(
                         Circle(
-                            bx, 19F, 14F, todayLabelColor
+                            bx, 18F, 14F, todayLabelColor
                         )
                     )
 
                     labelsToDraw.add(
                         Circle(
-                            bx, 19F, 13F, background
+                            bx, 18F, 13F, background
                         )
                     )
                 }
@@ -240,7 +240,7 @@ class CalendarTrendView @JvmOverloads constructor(
                         date.dayOfMonth.toString(),
                         10F,
                         ax,
-                        8F,
+                        18F,
                         if (date == today()) todayLabelColor
                         else dayLabelColor,
                         true,
@@ -256,7 +256,7 @@ class CalendarTrendView @JvmOverloads constructor(
                         ).substring(0, 3).toUpperCase(),
                         8F,
                         bx,
-                        2F,
+                        12F,
                         if (isToday) todayLabelColor
                         else monthLabelColor,
                         true,
