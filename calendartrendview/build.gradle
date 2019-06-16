@@ -19,9 +19,8 @@ android {
 }
 
 dependencies {
-    //implementation simplePaperView
-    implementation project(':simplepaperview-release')
     implementation kotlinStdlib
+    //implementation simplePaperView
     implementation threeTenABP
 }
 
