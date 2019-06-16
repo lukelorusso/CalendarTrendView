@@ -1,1 +1,1 @@
-include ':calendartrendview', ':calendartrendview-example'
+include ':calendartrendview', ':calendartrendview-example', ':simplepaperview-release'

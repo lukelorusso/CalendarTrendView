@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="SimplePaperView">
-        <attr name="android:padding" />
-        <attr name="android:paddingTop" />
-        <attr name="android:paddingStart" />
-        <attr name="android:paddingLeft" />
-        <attr name="android:paddingEnd" />
-        <attr name="android:paddingRight" />
-        <attr name="android:paddingBottom" />
-    </declare-styleable>
-
     <declare-styleable name="CalendarTrendView">
         <attr name="ctv_startFrom" format="enum">
             <enum name="nowhere" value="0"/>
