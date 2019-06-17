@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         initData()
 
         calendarTrendView.labelTypeFace = ResourcesCompat.getFont(this, R.font.proxima_nova_regular)
+        calendarTrendView.numberOfDaysToShowAtLeast = 14
         calendarTrendView.setTrends(trends.toMutableList())
         calendarTrendView.setOnDrawListener { calendarScrollView.post { calendarScrollView.fullScroll(View.FOCUS_RIGHT) } }
         createRatioButtons()
@@ -75,9 +76,7 @@ class MainActivity : AppCompatActivity() {
                     LocalDate.of(2019, 5, 20) to 6.7F,
                     LocalDate.of(2019, 5, 21) to 6.8F,
                     LocalDate.of(2019, 5, 22) to 7.3F,
-                    LocalDate.of(2019, 5, 23) to 6.9F,
-                    LocalDate.of(2019, 5, 24) to null,
-                    LocalDate.of(2019, 5, 25) to null
+                    LocalDate.of(2019, 5, 23) to 6.9F
                 ),
                 colors[0]
             ),
@@ -91,15 +90,11 @@ class MainActivity : AppCompatActivity() {
                     LocalDate.of(2019, 5, 14) to 2.5F,
                     LocalDate.of(2019, 5, 15) to 2.7F,
                     LocalDate.of(2019, 5, 16) to 4.2F,
-                    LocalDate.of(2019, 5, 17) to null,
-                    LocalDate.of(2019, 5, 18) to null,
                     LocalDate.of(2019, 5, 19) to 4.7F,
                     LocalDate.of(2019, 5, 20) to 5F,
                     LocalDate.of(2019, 5, 21) to 5F,
                     LocalDate.of(2019, 5, 22) to 5.3F,
-                    LocalDate.of(2019, 5, 23) to 5.1F,
-                    LocalDate.of(2019, 5, 24) to null,
-                    LocalDate.of(2019, 5, 25) to null
+                    LocalDate.of(2019, 5, 23) to 5.1F
                 ),
                 colors[1]
             ),
@@ -119,9 +114,7 @@ class MainActivity : AppCompatActivity() {
                     LocalDate.of(2019, 5, 20) to 3F,
                     LocalDate.of(2019, 5, 21) to 3.1F,
                     LocalDate.of(2019, 5, 22) to 3.7F,
-                    LocalDate.of(2019, 5, 23) to 3.3F,
-                    LocalDate.of(2019, 5, 24) to null,
-                    LocalDate.of(2019, 5, 25) to null
+                    LocalDate.of(2019, 5, 23) to 3.3F
                 ),
                 colors[2]
             ),
@@ -141,9 +134,7 @@ class MainActivity : AppCompatActivity() {
                     LocalDate.of(2019, 5, 20) to 8.7F,
                     LocalDate.of(2019, 5, 21) to 8.8F,
                     LocalDate.of(2019, 5, 22) to 9.3F,
-                    LocalDate.of(2019, 5, 23) to 9.4F,
-                    LocalDate.of(2019, 5, 24) to null,
-                    LocalDate.of(2019, 5, 25) to null
+                    LocalDate.of(2019, 5, 23) to 9.4F
                 ),
                 colors[3]
             )

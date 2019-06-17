@@ -37,6 +37,7 @@ class CalendarTrendView @JvmOverloads constructor(
     private var showToday = false
     var maxValue = DEFAULT_MAX_VALUE
     var minValue = DEFAULT_MIN_VALUE
+    var numberOfDaysToShowAtLeast = 0
     var xUnitMeasureInDp = 0F
     var yUnitMeasureInDp = 0F
     var paddingBottomInDp = 40F
@@ -301,11 +302,22 @@ class CalendarTrendView @JvmOverloads constructor(
     }
 
     private fun getUniqueDates(): Set<LocalDate> {
-        val setOfDates = mutableSetOf<LocalDate>()
+        var setOfDates = mutableSetOf<LocalDate>()
         trends.forEach { trend ->
             trend.values.forEach { value -> setOfDates.add(value.key) }
         }
         if (showToday) setOfDates.add(today())
+        setOfDates = setOfDates.toSortedSet()
+
+        if (setOfDates.size < numberOfDaysToShowAtLeast) {
+            var lastDay = setOfDates.elementAt(setOfDates.size - 1)
+            while (setOfDates.size < numberOfDaysToShowAtLeast) {
+                while (setOfDates.contains(lastDay)) lastDay = lastDay.minusDays(1)
+                setOfDates.add(lastDay)
+            }
+        }
+        setOfDates = setOfDates.toSortedSet()
+
         return setOfDates.sorted().toSet()
     }
 
