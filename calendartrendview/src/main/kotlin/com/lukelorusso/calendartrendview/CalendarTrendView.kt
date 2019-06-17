@@ -118,6 +118,31 @@ class CalendarTrendView @JvmOverloads constructor(
         drawTrends()
     }
 
+    fun getUniqueDates(): Set<LocalDate> {
+        var setOfDates = mutableSetOf<LocalDate>()
+        trends.forEach { trend ->
+            trend.values.forEach { value -> setOfDates.add(value.key) }
+        }
+        if (showToday) setOfDates.add(today())
+        setOfDates = setOfDates.toSortedSet()
+
+        if (setOfDates.size < numberOfDaysToShowAtLeast) {
+            var lastDay = setOfDates.elementAt(setOfDates.size - 1)
+            while (setOfDates.size < numberOfDaysToShowAtLeast) {
+                while (setOfDates.contains(lastDay)) lastDay = lastDay.minusDays(1)
+                setOfDates.add(lastDay)
+            }
+        }
+        setOfDates = setOfDates.toSortedSet()
+
+        return setOfDates.sorted().toSet()
+    }
+
+    fun today(): LocalDate {
+        val now = Calendar.getInstance().timeInMillis
+        return LocalDateTime.ofEpochSecond(now / 1000, 0, zoneOffset).toLocalDate()
+    }
+
     private fun drawTrends() {
         clearPaper(false)
 
@@ -299,31 +324,6 @@ class CalendarTrendView @JvmOverloads constructor(
                 1F
             ), true
         )
-    }
-
-    private fun getUniqueDates(): Set<LocalDate> {
-        var setOfDates = mutableSetOf<LocalDate>()
-        trends.forEach { trend ->
-            trend.values.forEach { value -> setOfDates.add(value.key) }
-        }
-        if (showToday) setOfDates.add(today())
-        setOfDates = setOfDates.toSortedSet()
-
-        if (setOfDates.size < numberOfDaysToShowAtLeast) {
-            var lastDay = setOfDates.elementAt(setOfDates.size - 1)
-            while (setOfDates.size < numberOfDaysToShowAtLeast) {
-                while (setOfDates.contains(lastDay)) lastDay = lastDay.minusDays(1)
-                setOfDates.add(lastDay)
-            }
-        }
-        setOfDates = setOfDates.toSortedSet()
-
-        return setOfDates.sorted().toSet()
-    }
-
-    private fun today(): LocalDate {
-        val now = Calendar.getInstance().timeInMillis
-        return LocalDateTime.ofEpochSecond(now / 1000, 0, zoneOffset).toLocalDate()
     }
 
     class Trend(
