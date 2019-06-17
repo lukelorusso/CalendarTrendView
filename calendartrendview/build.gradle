@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
@@ -19,8 +20,8 @@ android {
 }
 
 dependencies {
-    implementation kotlinStdlib
     //implementation simplePaperView
+    implementation kotlinStdlib
     implementation threeTenABP
 }
 

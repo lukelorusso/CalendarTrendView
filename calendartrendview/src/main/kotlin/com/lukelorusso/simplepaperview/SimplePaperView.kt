@@ -18,12 +18,13 @@ import com.lukelorusso.extensions.dpToPixel
  * Simple View to draw lines, circles or text labels
  */
 open class SimplePaperView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, var listener: (() -> Unit)? = null
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
     private val itemList = mutableListOf<DrawableItem>()
     private var paint = Paint().apply { flags = Paint.ANTI_ALIAS_FLAG }
     private var maxDims = PointF(0F, 0F)
+    private var onDrawListener: (() -> Unit)? = null
     var paddingTop = 0F
     var paddingStart = 0F
     var paddingEnd = 0F
@@ -88,7 +89,7 @@ open class SimplePaperView @JvmOverloads constructor(
         }
 
         super.onDraw(canvas)
-        listener?.invoke()
+        onDrawListener?.invoke()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -200,6 +201,10 @@ open class SimplePaperView @JvmOverloads constructor(
             invalidate()
             requestLayout()
         }
+    }
+
+    open fun setOnDrawListener(listener: (() -> Unit)?) {
+        this.onDrawListener = listener
     }
     //endregion
 

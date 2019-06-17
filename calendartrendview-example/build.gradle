@@ -8,8 +8,8 @@ android {
         applicationId "com.lukelorusso.calendartrendview"
         minSdkVersion androidMinSdkVersion
         targetSdkVersion androidTargetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode androidVersionCode
+        versionName androidVersionName
     }
     buildTypes {
         release {

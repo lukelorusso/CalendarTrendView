@@ -1,4 +1,4 @@
-package com.lukelorusso.androidgraphdriver
+package com.lukelorusso.calendartrendviewsample
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

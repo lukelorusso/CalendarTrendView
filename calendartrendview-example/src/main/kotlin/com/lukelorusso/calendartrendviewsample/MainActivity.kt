@@ -1,4 +1,4 @@
-package com.lukelorusso.androidgraphdriver
+package com.lukelorusso.calendartrendviewsample
 
 import android.os.Bundle
 import android.view.View
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         calendarTrendView.labelTypeFace = ResourcesCompat.getFont(this, R.font.proxima_nova_regular)
         calendarTrendView.setTrends(trends.toMutableList())
-        calendarTrendView.listener = { calendarScrollView.post { calendarScrollView.fullScroll(View.FOCUS_RIGHT) } }
+        calendarTrendView.setOnDrawListener { calendarScrollView.post { calendarScrollView.fullScroll(View.FOCUS_RIGHT) } }
         createRatioButtons()
     }
 

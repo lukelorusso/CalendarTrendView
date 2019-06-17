@@ -18,8 +18,8 @@ import java.util.*
  * Show a cartesian trend graph based on calendar dates
  */
 class CalendarTrendView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, listener: (() -> Unit)? = null
-) : SimplePaperView(context, attrs, defStyleAttr, listener) {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : SimplePaperView(context, attrs, defStyleAttr) {
 
     companion object {
         private const val DEFAULT_MAX_VALUE = 10F
@@ -32,6 +32,9 @@ class CalendarTrendView @JvmOverloads constructor(
         FIRST_VALUE
     }
 
+    private var trends = mutableListOf<Trend>()
+    private var startFrom = StartFrom.NOWHERE
+    private var showToday = false
     var maxValue = DEFAULT_MAX_VALUE
     var minValue = DEFAULT_MIN_VALUE
     var xUnitMeasureInDp = 0F
@@ -42,9 +45,6 @@ class CalendarTrendView @JvmOverloads constructor(
     var dayLabelColor = Color.BLACK
     var monthLabelColor = Color.BLACK
     var todayLabelColor = Color.BLACK
-    private var trends = mutableListOf<Trend>()
-    private var startFrom = StartFrom.NOWHERE
-    private var showToday = false
     var labelTypeFace: Typeface? = null
     var zoneOffset: ZoneOffset = ZoneOffset.of("+01:00")
 

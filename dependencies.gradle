@@ -8,8 +8,8 @@ allprojects {
 ext {
 
     // APP VERSION
-    androidVersionCode          = 1
-    androidVersionName          = '1.0'
+    androidVersionCode          = 2
+    androidVersionName          = '1.1.0'
 
     // ANDROID VERSION
     androidCompileSdkVersion    = 28
@@ -28,7 +28,7 @@ ext {
     threeTenABP                 = "com.jakewharton.threetenabp:threetenabp:$threeTenABPVersion"
 
     // LUKELORUSSO
-    simplePaperViewVersion      = '1.0'
+    simplePaperViewVersion      = '1.1.0'
     simplePaperView             = "com.lukelorusso:simplepaperview:$simplePaperViewVersion"
 
 }
