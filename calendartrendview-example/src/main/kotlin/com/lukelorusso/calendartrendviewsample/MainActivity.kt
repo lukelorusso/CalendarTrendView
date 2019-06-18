@@ -21,46 +21,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initData()
-
-        calendarTrendView.labelTypeFace = ResourcesCompat.getFont(this, R.font.proxima_nova_regular)
-        calendarTrendView.numberOfDaysToShowAtLeast = 14
-        calendarTrendView.setTrends(trends.toMutableList())
-        calendarTrendView.setOnDrawListener { calendarScrollView.post { calendarScrollView.fullScroll(View.FOCUS_RIGHT) } }
-        createRatioButtons()
+        initView()
     }
 
-    private fun createRatioButtons() {
-        for ((i, label) in labels.withIndex()) {
-            val checkBox = CheckBox(this).apply {
-                text = label
-                isChecked = true
-                setTextColor(colors[i])
-            }
-            checkBox.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) trends.forEach { trend -> if (label == trend.label) calendarTrendView.addTrend(trend) }
-                else calendarTrendView.removeTrendByLabel(label)
-            }
-            calendarCheckGroup.addView(checkBox)
-        }
-    }
-
-    //region DEMO DATA
+    //region PRIVATE METHODS
     private fun initData() {
-        labels = listOf(
+        labels = mutableListOf(
             getString(R.string.welfare),
             getString(R.string.serenity),
             getString(R.string.relation),
             getString(R.string.health)
         )
 
-        colors = listOf(
+        colors = mutableListOf(
             ContextCompat.getColor(this, R.color.graphWelfare),
             ContextCompat.getColor(this, R.color.graphSerenity),
             ContextCompat.getColor(this, R.color.graphRelation),
             ContextCompat.getColor(this, R.color.graphHealth)
         )
 
-        trends = listOf(
+        trends = mutableListOf(
             CalendarTrendView.Trend(
                 labels[0],
                 hashMapOf(
@@ -76,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                     LocalDate.of(2019, 5, 20) to 6.7F,
                     LocalDate.of(2019, 5, 21) to 6.8F,
                     LocalDate.of(2019, 5, 22) to 7.3F,
-                    LocalDate.of(2019, 5, 23) to 6.9F
+                    LocalDate.of(2019, 5, 23) to 7.2F
                 ),
                 colors[0]
             ),
@@ -114,7 +94,7 @@ class MainActivity : AppCompatActivity() {
                     LocalDate.of(2019, 5, 20) to 3F,
                     LocalDate.of(2019, 5, 21) to 3.1F,
                     LocalDate.of(2019, 5, 22) to 3.7F,
-                    LocalDate.of(2019, 5, 23) to 3.3F
+                    LocalDate.of(2019, 5, 23) to 0F
                 ),
                 colors[2]
             ),
@@ -134,11 +114,63 @@ class MainActivity : AppCompatActivity() {
                     LocalDate.of(2019, 5, 20) to 8.7F,
                     LocalDate.of(2019, 5, 21) to 8.8F,
                     LocalDate.of(2019, 5, 22) to 9.3F,
-                    LocalDate.of(2019, 5, 23) to 9.4F
+                    LocalDate.of(2019, 5, 23) to 10F
                 ),
                 colors[3]
             )
         )
+    }
+
+    private fun initView() {
+        calendarTrendView.labelTypeFace = ResourcesCompat.getFont(this, R.font.proxima_nova_regular)
+        calendarTrendView.lineWeightsInDp = 4F
+        calendarTrendView.numberOfDaysToShowAtLeast = 14
+        if (isDayTracked(calendarTrendView.today())) {
+            calendarTrendView.todayLabelColor = calendarTrendView.dayLabelColor
+        }
+        calendarTrendView.setTrends(trends.toMutableList()) // in this way I set a copy of my list
+        calendarTrendView.setOnDrawListener { calendarScrollView.post { calendarScrollView.fullScroll(View.FOCUS_RIGHT) } }
+
+        createRatioButtons()
+
+        mainBtnAddValues.setOnClickListener {
+            addTrend(calendarTrendView.today(), listOf(10F, 10F, 10F, 10F))
+        }
+    }
+
+    private fun createRatioButtons() {
+        calendarTrendsCheckGroup.removeAllViews()
+
+        for ((i, label) in labels.withIndex()) {
+            val checkBox = CheckBox(this).apply {
+                text = label
+                isChecked = true
+                setTextColor(colors[i])
+            }
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) trends.forEach { trend -> if (label == trend.label) calendarTrendView.addTrend(trend) }
+                else calendarTrendView.removeTrendByLabel(label)
+            }
+            calendarTrendsCheckGroup.addView(checkBox)
+        }
+    }
+
+    private fun isDayTracked(day: LocalDate): Boolean {
+        for (trend in trends) for (value in trend.values) {
+            if (value.key == day) return true
+        }
+        return false
+    }
+
+    private fun addTrend(day: LocalDate, newValues: List<Float>) {
+        if (trends.size == newValues.size) {
+            for (i in 0 until trends.size) {
+                val values = trends[i].values.toMutableMap()
+                values[day] = newValues[i]
+                trends[i].values = values as HashMap<LocalDate, Float?>
+            }
+            initView()
+        }
     }
     //endregion
 

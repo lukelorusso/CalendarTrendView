@@ -14,19 +14,19 @@ Show a cartesian trend graph based on calendar dates
 
 ## Why would you need it? ##
 
-Make sure to include the library in your app's build.gradle:
-
-```groovy
-    implementation 'com.lukelorusso:calendartrendview:1.1.0'
-```  
-
 Coming soon
 
 - - -
 
 ## How to use it? ##
 
-Coming soon
+Make sure to include the library in your app's build.gradle:
+
+```groovy
+    implementation 'com.lukelorusso:calendartrendview:1.1.1'
+```  
+
+More oming soon
 
 - - -
 

@@ -155,18 +155,12 @@ open class SimplePaperView @JvmOverloads constructor(
     //region EXPOSED METHODS
     fun drawInDp(itemList: List<DrawableItem> = mutableListOf(), invalidate: Boolean = true) {
         itemList.forEach { item -> drawInDp(item) }
-        if (invalidate) {
-            invalidate()
-            requestLayout()
-        }
+        if (invalidate) redrawPaper()
     }
 
     fun drawInPx(itemList: List<DrawableItem> = mutableListOf(), invalidate: Boolean = true) {
         itemList.forEach { item -> drawInPx(item) }
-        if (invalidate) {
-            invalidate()
-            requestLayout()
-        }
+        if (invalidate) redrawPaper()
     }
 
     fun drawInDp(item: DrawableItem, invalidate: Boolean = true) {
@@ -175,10 +169,7 @@ open class SimplePaperView @JvmOverloads constructor(
             is Circle -> drawCircleInDp(item)
             is TextLabel -> drawTextInDp(item)
         }
-        if (invalidate) {
-            invalidate()
-            requestLayout()
-        }
+        if (invalidate) redrawPaper()
     }
 
     fun drawInPx(item: DrawableItem, invalidate: Boolean = true) {
@@ -187,20 +178,24 @@ open class SimplePaperView @JvmOverloads constructor(
             is Circle -> drawCircleInPx(item)
             is TextLabel -> drawTextInPx(item)
         }
-        if (invalidate) {
-            invalidate()
-            requestLayout()
-        }
+        if (invalidate) redrawPaper()
     }
 
     fun clearPaper(invalidate: Boolean = true) {
         paint = Paint().apply { flags = Paint.ANTI_ALIAS_FLAG }
         itemList.clear()
         maxDims = PointF(0F, 0F)
-        if (invalidate) {
-            invalidate()
-            requestLayout()
-        }
+        if (invalidate) redrawPaper()
+    }
+
+    fun redrawPaper() {
+        invalidate()
+        requestLayout()
+    }
+
+    fun getBackgroundColor(): Int {
+        return if (background is ColorDrawable) (background as ColorDrawable).color
+        else Color.TRANSPARENT
     }
 
     open fun setOnDrawListener(listener: (() -> Unit)?) {
@@ -213,20 +208,14 @@ open class SimplePaperView @JvmOverloads constructor(
 
     private fun drawLineInPx(line: Line, invalidate: Boolean = true) {
         itemList.add(line)
-        if (invalidate) {
-            invalidate()
-            requestLayout()
-        }
+        if (invalidate) redrawPaper()
     }
 
     private fun drawCircleInDp(circle: Circle, invalidate: Boolean = true) = drawCircleInPx(mapToPx(circle), invalidate)
 
     private fun drawCircleInPx(circle: Circle, invalidate: Boolean = true) {
         itemList.add(circle)
-        if (invalidate) {
-            invalidate()
-            requestLayout()
-        }
+        if (invalidate) redrawPaper()
     }
 
     private fun drawTextInDp(textLabel: TextLabel, invalidate: Boolean = true) =
@@ -260,15 +249,7 @@ open class SimplePaperView @JvmOverloads constructor(
         }
 
         itemList.add(textLabel)
-        if (invalidate) {
-            invalidate()
-            requestLayout()
-        }
-    }
-
-    fun getBackgroundColor(): Int {
-        return if (background is ColorDrawable) (background as ColorDrawable).color
-        else Color.TRANSPARENT
+        if (invalidate) redrawPaper()
     }
     //endregion
 

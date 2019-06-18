@@ -5,4 +5,5 @@
     <string name="serenity">"Serenity"</string>
     <string name="relation">"Relation"</string>
     <string name="health">"Health"</string>
+    <string name="add_values">Add values for today</string>
 </resources>

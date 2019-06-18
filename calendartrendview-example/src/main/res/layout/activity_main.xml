@@ -1,52 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
             android:scrollbars="none"
             tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:text="@string/title"
-            android:textSize="18sp"
-            android:textStyle="italic"/>
-
-        <HorizontalScrollView
-            android:id="@+id/calendarScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none">
+            android:orientation="vertical">
 
-            <com.lukelorusso.calendartrendview.CalendarTrendView
-                android:id="@+id/calendarTrendView"
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/graphBackground"
-                app:ctv_dayLabelColor="@color/graphTextLabelDay"
-                app:ctv_monthLabelColor="@color/graphTextLabelMonth"
-                app:ctv_todayLabelColor="@color/colorAccent"
-                app:ctv_stepLineColor="@color/graphStepLine"
-                app:ctv_showToday="true"
-                app:ctv_startFrom="nowhere"
-                app:ctv_xUnitMeasure="25dp"
-                app:ctv_yUnitMeasure="22dp" />
+                android:padding="15dp"
+                android:text="@string/title"
+                android:textSize="18sp"
+                android:textStyle="italic"/>
+
+        <HorizontalScrollView
+                android:id="@+id/calendarScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+            <com.lukelorusso.calendartrendview.CalendarTrendView
+                    android:id="@+id/calendarTrendView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/graphBackground"
+                    app:ctv_dayLabelColor="@color/graphTextLabelDay"
+                    app:ctv_monthLabelColor="@color/graphTextLabelMonth"
+                    app:ctv_todayLabelColor="@color/colorAccent"
+                    app:ctv_stepLineColor="@color/graphStepLine"
+                    app:ctv_showToday="true"
+                    app:ctv_startFrom="nowhere"
+                    app:ctv_xUnitMeasure="25dp"
+                    app:ctv_yUnitMeasure="22dp"/>
 
         </HorizontalScrollView>
 
         <LinearLayout
-            android:id="@+id/calendarCheckGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:orientation="vertical" />
+                android:id="@+id/calendarTrendsCheckGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="vertical"/>
+
+        <Button
+                android:id="@+id/mainBtnAddValues"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="@string/add_values"/>
 
     </LinearLayout>
 
