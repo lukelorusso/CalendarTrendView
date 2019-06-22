@@ -17,12 +17,13 @@ This library make use of [SimplePaperView](https://github.com/lukelorusso/Simple
 ## Why would you need it? ##
 
 Let's say you want to represent one or more behaviours.  
-By "behaviour" I mean a set of events, happening once per day, evaluated as Float numbers in the range of `0.0` to `10.0` (percentage; you can change min and max values 😉).  
-It would be useful to show a "trend" of how this events evolve as the days pass by.
+By "behaviour" I mean a list of events, happening once per day, evaluated as Float numbers in the range of `0.0` to `10.0` (percentage; you can change min and max values 😉).  
+It would be useful to show a trend of how this events evolve as the days pass by.
 
 With CalendarTrendView you can show a meaningful "trend graph" (a cartesian x,y board) that tracks the evolution of your behaviours.
-In this example you see the evolution of 4 behaviours, or `Trends`.
-Each trend is a class with:  
+
+In this example you see the evolution of 4 behaviours, or "Trends".  
+Each `Trend` is a class with:  
 * a label
 * an `HashMap<LocalDate, Float?>`
 * a color
@@ -77,18 +78,18 @@ val trend = CalendarTrendView.Trend(
 )
 ```  
 
-You can create a `List<Trend>` to set.
+You can create a `List<Trend>` to set.  
 Remember that your value is a Float, but can also be unknown (null).
 
-Let's customize a little more or view:  
+Let's customize our view a little more:  
 ```kotlin
-calendarTrendView.labelTypeFace = ResourcesCompat.getFont(this, R.font.proxima_nova_regular)
-calendarTrendView.lineWeightsInDp = 4F // each Trend can override this with its own lineWeightsInDp
 calendarTrendView.numberOfDaysToShowAtLeast = 14
 calendarTrendView.maxValue = 1000F // you may want to customize this...
 calendarTrendView.minValue = 100F // ...or that
 calendarTrendView.xUnitMeasureInDp = context.dpToPixel(25F) // if you don't like...
 calendarTrendView.yUnitMeasureInDp = context.dpToPixel(22F) // ...using XML attributes
+calendarTrendView.labelTypeFace = ResourcesCompat.getFont(this, R.font.proxima_nova_regular) // you can choose a font for days' labels
+calendarTrendView.lineWeightsInDp = 4F // the global "thickness"; however, each Trend can override this with its own lineWeightsInDp
 ```  
 
 Time to add our Trend:
