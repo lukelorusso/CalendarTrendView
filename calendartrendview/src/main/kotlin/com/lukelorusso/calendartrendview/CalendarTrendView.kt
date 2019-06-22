@@ -6,21 +6,18 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.util.AttributeSet
-import com.lukelorusso.extensions.pixelToDp
 import com.lukelorusso.simplepaperview.SimplePaperView
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneOffset
 import org.threeten.bp.format.TextStyle
 import java.util.*
-import kotlin.collections.HashMap
+import kotlin.math.max
 
 /**
  * Show a cartesian trend graph based on calendar dates
  */
-class CalendarTrendView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : SimplePaperView(context, attrs, defStyleAttr) {
+class CalendarTrendView constructor(context: Context, attrs: AttributeSet) : SimplePaperView(context, attrs) {
 
     companion object {
         private const val DEFAULT_MAX_VALUE = 10F
@@ -81,6 +78,82 @@ class CalendarTrendView @JvmOverloads constructor(
         attributes.recycle()
     }
 
+    //region MODELS
+    class Trend(
+        var label: String,
+        var values: HashMap<LocalDate, Float?> = hashMapOf(),
+        var color: Int = Color.BLACK,
+        var lineWeightsInDp: Float? = null
+    )
+    //endregion
+
+    //region EXPOSED METHODS
+    /**
+     * Trend values can be ONLY in the minValue..maxValue range
+     */
+    fun addTrend(trend: Trend) {
+        trends.add(trend)
+        drawTrends()
+    }
+
+    fun removeTrend(trend: Trend) {
+        trends.remove(trend)
+        drawTrends()
+    }
+
+    fun removeTrendAt(position: Int) {
+        trends.removeAt(position)
+        drawTrends()
+    }
+
+    fun removeTrendByLabel(label: String) {
+        trends.forEach { trend ->
+            if (label == trend.label) {
+                removeTrend(trend)
+                return
+            }
+        }
+    }
+
+    /**
+     * Trends values can be ONLY in the minValue..maxValue range
+     */
+    fun setTrends(trends: MutableList<Trend>) {
+        this.trends = trends
+        drawTrends()
+    }
+
+    fun clearTrends() {
+        trends.clear()
+        drawTrends()
+    }
+
+    fun getUniqueDates(): Set<LocalDate> {
+        var setOfDates = mutableSetOf<LocalDate>()
+        trends.forEach { trend ->
+            trend.values.forEach { value -> setOfDates.add(value.key) }
+        }
+        if (showToday) setOfDates.add(today())
+        setOfDates = setOfDates.toSortedSet()
+
+        if (setOfDates.size < numberOfDaysToShowAtLeast) {
+            var lastDay = setOfDates.elementAt(setOfDates.size - 1)
+            while (setOfDates.size < numberOfDaysToShowAtLeast) {
+                while (setOfDates.contains(lastDay)) lastDay = lastDay.minusDays(1)
+                setOfDates.add(lastDay)
+            }
+        }
+        setOfDates = setOfDates.toSortedSet()
+
+        return setOfDates.sorted().toSet()
+    }
+
+    fun today(): LocalDate {
+        val now = Calendar.getInstance().timeInMillis
+        return LocalDateTime.ofEpochSecond(now / 1000, 0, zoneOffset).toLocalDate()
+    }
+    //endregion
+
     //region PRIVATE METHODS
     private fun drawTrends() {
         clearPaper(false)
@@ -136,10 +209,10 @@ class CalendarTrendView @JvmOverloads constructor(
                     val weight = trend.lineWeightsInDp ?: lineWeightsInDp
                     val line = Line(ax, ay, bx, by, trend.color, weight)
                     trendsToDraw.add(line)
-                    maxWeight = Math.max(maxWeight, weight)
+                    maxWeight = max(maxWeight, weight)
 
-                    maxWidth = Math.max(maxWidth, Math.max(ax, bx))
-                    //maxHeight = Math.max(maxHeight, Math.max(y, dy))
+                    maxWidth = max(maxWidth, max(ax, bx))
+                    //maxHeight = max(maxHeight, max(y, dy))
                     lastDrawnCount = countFromFirstDay
 
                     // Collecting trend's final dots
@@ -162,7 +235,7 @@ class CalendarTrendView @JvmOverloads constructor(
                 }
             }
 
-            numberOfStepLines = Math.max(numberOfStepLines, countFromFirstDay)
+            numberOfStepLines = max(numberOfStepLines, countFromFirstDay)
         }
 
         // Collecting vertical step lines
@@ -177,7 +250,7 @@ class CalendarTrendView @JvmOverloads constructor(
             if (paddingBottomInDp > 0) by += paddingBottomInDp
 
             stepLinesToDraw.add(Line(ax, ay, bx, by, stepLineColor, 0.8F))
-            maxWidth = Math.max(maxWidth, Math.max(ax, bx))
+            maxWidth = max(maxWidth, max(ax, bx))
 
             // Creating day and month labels
             if (i > 0) {
@@ -274,82 +347,6 @@ class CalendarTrendView @JvmOverloads constructor(
             ), true
         )
     }
-    //endregion
-
-    //region EXPOSED METHODS
-    /**
-     * Trend values can be ONLY in the minValue..maxValue range
-     */
-    fun addTrend(trend: Trend) {
-        trends.add(trend)
-        drawTrends()
-    }
-
-    fun removeTrend(trend: Trend) {
-        trends.remove(trend)
-        drawTrends()
-    }
-
-    fun removeTrendAt(position: Int) {
-        trends.removeAt(position)
-        drawTrends()
-    }
-
-    fun removeTrendByLabel(label: String) {
-        trends.forEach { trend ->
-            if (label == trend.label) {
-                removeTrend(trend)
-                return
-            }
-        }
-    }
-
-    /**
-     * Trends values can be ONLY in the minValue..maxValue range
-     */
-    fun setTrends(trends: MutableList<Trend>) {
-        this.trends = trends
-        drawTrends()
-    }
-
-    fun clearTrends() {
-        trends.clear()
-        drawTrends()
-    }
-
-    fun getUniqueDates(): Set<LocalDate> {
-        var setOfDates = mutableSetOf<LocalDate>()
-        trends.forEach { trend ->
-            trend.values.forEach { value -> setOfDates.add(value.key) }
-        }
-        if (showToday) setOfDates.add(today())
-        setOfDates = setOfDates.toSortedSet()
-
-        if (setOfDates.size < numberOfDaysToShowAtLeast) {
-            var lastDay = setOfDates.elementAt(setOfDates.size - 1)
-            while (setOfDates.size < numberOfDaysToShowAtLeast) {
-                while (setOfDates.contains(lastDay)) lastDay = lastDay.minusDays(1)
-                setOfDates.add(lastDay)
-            }
-        }
-        setOfDates = setOfDates.toSortedSet()
-
-        return setOfDates.sorted().toSet()
-    }
-
-    fun today(): LocalDate {
-        val now = Calendar.getInstance().timeInMillis
-        return LocalDateTime.ofEpochSecond(now / 1000, 0, zoneOffset).toLocalDate()
-    }
-    //endregion
-
-    //region MODELS
-    class Trend(
-        var label: String,
-        var values: HashMap<LocalDate, Float?> = hashMapOf(),
-        var color: Int = Color.BLACK,
-        var lineWeightsInDp: Float? = null
-    )
     //endregion
 
 }

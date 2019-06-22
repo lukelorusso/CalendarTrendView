@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    //implementation simplePaperView
+    implementation simplePaperView
     implementation kotlinStdlib
     implementation threeTenABP
 }

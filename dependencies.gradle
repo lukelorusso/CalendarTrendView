@@ -8,8 +8,8 @@ allprojects {
 ext {
 
     // APP VERSION
-    androidVersionCode          = 3
-    androidVersionName          = '1.1.1'
+    androidVersionCode          = 4
+    androidVersionName          = '1.1.2' // REMEMBER: also update README.md (all instances)
 
     // ANDROID VERSION
     androidCompileSdkVersion    = 28
@@ -27,8 +27,8 @@ ext {
     threeTenABPVersion          = '1.2.1'
     threeTenABP                 = "com.jakewharton.threetenabp:threetenabp:$threeTenABPVersion"
 
-    // LUKELORUSSO
-    simplePaperViewVersion      = '1.1.1'
+    // LUKE LORUSSO
+    simplePaperViewVersion      = '1.1.2'
     simplePaperView             = "com.lukelorusso:simplepaperview:$simplePaperViewVersion"
 
 }
