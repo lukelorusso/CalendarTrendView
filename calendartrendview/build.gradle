@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    implementation simplePaperView
+    api simplePaperView // it will share the dependency with the project that integrates this one
     implementation kotlinStdlib
     implementation threeTenABP
 }

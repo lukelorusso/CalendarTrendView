@@ -24,7 +24,6 @@ android {
 }
 
 dependencies {
-    implementation simplePaperView
     implementation project(':calendartrendview')
     implementation kotlinStdlib
     implementation androidXAppCompat
