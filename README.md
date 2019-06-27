@@ -63,6 +63,10 @@ maybe add some colors, set if you need to show today or not... you may also want
         ...
 ```  
 
+- - -
+
+# Attributes #
+
 Ok by now, let's move to the code!    
 This is a `Trend`:
 ```kotlin
@@ -124,10 +128,14 @@ This is a useful way to get today's LocalDate:
 val todayLocalDate = calendarTrendView.today()
 ```  
 
+- - -
+
+# Explore! #
+
 Feel free to checkout and launch the example app 🎡
 
 - - -
 
-## Copyright ##
+# Copyright #
 
-The App: Copyright 2019 LUCA LORUSSO - http://lukelorusso.com
+Make with 💚 by [Luca Lorusso](http://lukelorusso.com), licensed under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0)
