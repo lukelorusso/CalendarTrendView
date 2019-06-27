@@ -36,7 +36,6 @@ Each `Trend` is a class with:
 Make sure to include the library in your app's build.gradle:
 
 ```groovy
-    implementation 'com.lukelorusso:simplepaperview:1.1.2'
     implementation 'com.lukelorusso:calendartrendview:1.1.2'
 ```  
 

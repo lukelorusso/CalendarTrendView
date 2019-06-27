@@ -13,7 +13,7 @@ ext {
 
     // ANDROID VERSION
     androidCompileSdkVersion    = 28
-    androidMinSdkVersion        = 21
+    androidMinSdkVersion        = 16
     androidTargetSdkVersion     = 28
 
     // KOTLIN
@@ -29,6 +29,8 @@ ext {
 
     // LUKE LORUSSO
     simplePaperViewVersion      = '1.1.2'
-    simplePaperView             = "com.lukelorusso:simplepaperview:$simplePaperViewVersion"
+    simplePaperViewGroupId      = "com.lukelorusso"
+    simplePaperViewArtifactId   = "simplepaperview"
+    simplePaperView             = "$simplePaperViewGroupId:$simplePaperViewArtifactId:$simplePaperViewVersion"
 
 }
