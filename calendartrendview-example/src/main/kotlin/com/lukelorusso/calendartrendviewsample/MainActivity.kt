@@ -44,19 +44,19 @@ class MainActivity : AppCompatActivity() {
             CalendarTrendView.Trend(
                 labels[0],
                 hashMapOf(
-                    LocalDate.of(2019, 5, 11) to 7F,
-                    LocalDate.of(2019, 5, 12) to 7F,
-                    LocalDate.of(2019, 5, 13) to 8F,
-                    LocalDate.of(2019, 5, 14) to 8F,
-                    LocalDate.of(2019, 5, 15) to 8F,
-                    LocalDate.of(2019, 5, 16) to 7.2F,
-                    LocalDate.of(2019, 5, 17) to 7.3F,
-                    LocalDate.of(2019, 5, 18) to 7.6F,
-                    LocalDate.of(2019, 5, 19) to 7.7F,
-                    LocalDate.of(2019, 5, 20) to 8.7F,
-                    LocalDate.of(2019, 5, 21) to 8.8F,
-                    LocalDate.of(2019, 5, 22) to 9.3F,
-                    LocalDate.of(2019, 5, 23) to 9.4F
+                    "2019-05-11" to 7F,
+                    "2019-05-12" to 7F,
+                    "2019-05-13" to 8F,
+                    "2019-05-14" to 8F,
+                    "2019-05-15" to 8F,
+                    "2019-05-16" to 7.2F,
+                    "2019-05-17" to 7.3F,
+                    "2019-05-18" to 7.6F,
+                    "2019-05-19" to 7.7F,
+                    "2019-05-20" to 8.7F,
+                    "2019-05-21" to 8.8F,
+                    "2019-05-22" to 9.3F,
+                    "2019-05-23" to 9.4F
                 ),
                 colors[0]
             ),
@@ -64,19 +64,19 @@ class MainActivity : AppCompatActivity() {
             CalendarTrendView.Trend(
                 labels[1],
                 hashMapOf(
-                    LocalDate.of(2019, 5, 11) to 4F,
-                    LocalDate.of(2019, 5, 12) to 4.3F,
-                    LocalDate.of(2019, 5, 13) to 4F,
-                    LocalDate.of(2019, 5, 14) to 4F,
-                    LocalDate.of(2019, 5, 15) to 4.3F,
-                    LocalDate.of(2019, 5, 16) to 5.2F,
-                    LocalDate.of(2019, 5, 17) to 5.3F,
-                    LocalDate.of(2019, 5, 18) to 5.6F,
-                    LocalDate.of(2019, 5, 19) to 5.7F,
-                    LocalDate.of(2019, 5, 20) to 6.7F,
-                    LocalDate.of(2019, 5, 21) to 6.8F,
-                    LocalDate.of(2019, 5, 22) to 7.3F,
-                    LocalDate.of(2019, 5, 23) to 6.9F
+                    "2019-05-11" to 4F,
+                    "2019-05-12" to 4.3F,
+                    "2019-05-13" to 4F,
+                    "2019-05-14" to 4F,
+                    "2019-05-15" to 4.3F,
+                    "2019-05-16" to 5.2F,
+                    "2019-05-17" to 5.3F,
+                    "2019-05-18" to 5.6F,
+                    "2019-05-19" to 5.7F,
+                    "2019-05-20" to 6.7F,
+                    "2019-05-21" to 6.8F,
+                    "2019-05-22" to 7.3F,
+                    "2019-05-23" to 6.9F
                 ),
                 colors[1]
             ),
@@ -84,19 +84,19 @@ class MainActivity : AppCompatActivity() {
             CalendarTrendView.Trend(
                 labels[2],
                 hashMapOf(
-                    LocalDate.of(2019, 5, 11) to 3F,
-                    LocalDate.of(2019, 5, 12) to 2.8F,
-                    LocalDate.of(2019, 5, 13) to 2.5F,
-                    LocalDate.of(2019, 5, 14) to 2.5F,
-                    LocalDate.of(2019, 5, 15) to 2.7F,
-                    LocalDate.of(2019, 5, 16) to 4.2F,
-                    LocalDate.of(2019, 5, 17) to 4.3F,
-                    LocalDate.of(2019, 5, 18) to 4.6F,
-                    LocalDate.of(2019, 5, 19) to 4.7F,
-                    LocalDate.of(2019, 5, 20) to 5F,
-                    LocalDate.of(2019, 5, 21) to 5F,
-                    LocalDate.of(2019, 5, 22) to 5.3F,
-                    LocalDate.of(2019, 5, 23) to 5.1F
+                    "2019-05-11" to 3F,
+                    "2019-05-12" to 2.8F,
+                    "2019-05-13" to 2.5F,
+                    "2019-05-14" to 2.5F,
+                    "2019-05-15" to 2.7F,
+                    "2019-05-16" to 4.2F,
+                    "2019-05-17" to 4.3F,
+                    "2019-05-18" to 4.6F,
+                    "2019-05-19" to 4.7F,
+                    "2019-05-20" to 5F,
+                    "2019-05-21" to 5F,
+                    "2019-05-22" to 5.3F,
+                    "2019-05-23" to 5.1F
                 ),
                 colors[2]
             ),
@@ -104,19 +104,19 @@ class MainActivity : AppCompatActivity() {
             CalendarTrendView.Trend(
                 labels[3],
                 hashMapOf(
-                    LocalDate.of(2019, 5, 11) to 1F,
-                    LocalDate.of(2019, 5, 12) to 1.1F,
-                    LocalDate.of(2019, 5, 13) to 0.9F,
-                    LocalDate.of(2019, 5, 14) to 0.9F,
-                    LocalDate.of(2019, 5, 15) to 0.8F,
-                    LocalDate.of(2019, 5, 16) to 1.8F,
-                    LocalDate.of(2019, 5, 17) to 1.8F,
-                    LocalDate.of(2019, 5, 18) to 2.2F,
-                    LocalDate.of(2019, 5, 19) to 2.3F,
-                    LocalDate.of(2019, 5, 20) to 3F,
-                    LocalDate.of(2019, 5, 21) to 3.1F,
-                    LocalDate.of(2019, 5, 22) to 3.7F,
-                    LocalDate.of(2019, 5, 23) to 3.3F
+                    "2019-05-11" to 1F,
+                    "2019-05-12" to 1.1F,
+                    "2019-05-13" to 0.9F,
+                    "2019-05-14" to 0.9F,
+                    "2019-05-15" to 0.8F,
+                    "2019-05-16" to 1.8F,
+                    "2019-05-17" to 1.8F,
+                    "2019-05-18" to 2.2F,
+                    "2019-05-19" to 2.3F,
+                    "2019-05-20" to 3F,
+                    "2019-05-21" to 3.1F,
+                    "2019-05-22" to 3.7F,
+                    "2019-05-23" to 3.3F
                 ),
                 colors[3]
             )
@@ -136,7 +136,8 @@ class MainActivity : AppCompatActivity() {
         createRatioButtons()
 
         mainBtnAddValues.setOnClickListener {
-            addTrend(calendarTrendView.today(), listOf(10F, 10F, 10F, 10F))
+            val todayAsString = calendarTrendView.dateTimeFormatter.format(calendarTrendView.today())
+            addTrendValues(todayAsString, listOf(10F, 10F, 10F, 10F))
         }
     }
 
@@ -159,17 +160,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun isDayTracked(day: LocalDate): Boolean {
         for (trend in trends) for (value in trend.values) {
-            if (value.key == day) return true
+            val formatter = calendarTrendView.dateTimeFormatter
+            val date = LocalDate.parse(value.key.subSequence(0, 10), formatter)
+            if (date == day) return true
         }
         return false
     }
 
-    private fun addTrend(day: LocalDate, newValues: List<Float>) {
+    private fun addTrendValues(dateAsString: String, newValues: List<Float>) {
         if (trends.size == newValues.size) {
             for (i in 0 until trends.size) {
-                val values = trends[i].values.toMutableMap()
-                values[day] = newValues[i]
-                trends[i].values = values as HashMap<LocalDate, Float?>
+                val values: HashMap<String, Float?> = trends[i].values
+                values[dateAsString] = newValues[i]
+                trends[i].values = values
             }
             initView()
         }

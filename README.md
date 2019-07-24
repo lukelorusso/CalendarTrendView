@@ -1,7 +1,7 @@
 CalendarTrendView
 =================
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html) [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16) [![Download](https://api.bintray.com/packages/lukelorusso/maven/com.lukelorusso:calendartrendview/images/download.svg?version=1.1.2) ](https://bintray.com/lukelorusso/maven/com.lukelorusso:calendartrendview/1.1.2/link)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html) [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16) [![Download](https://api.bintray.com/packages/lukelorusso/maven/com.lukelorusso:calendartrendview/images/download.svg?version=1.1.4) ](https://bintray.com/lukelorusso/maven/com.lukelorusso:calendartrendview/1.1.4/link)
 
 ## Presentation ##
 
@@ -36,7 +36,7 @@ Each `Trend` is a class with:
 Make sure to include the library in your app's build.gradle:
 
 ```groovy
-    implementation 'com.lukelorusso:calendartrendview:1.1.2'
+    implementation 'com.lukelorusso:calendartrendview:1.1.4'
 ```  
 
 Add the view to your layout:
@@ -72,11 +72,11 @@ This is a `Trend`:
 val trend = CalendarTrendView.Trend(
     "Precipitations",
     hashMapOf(
-        LocalDate.of(2019, 5, 11) to 4F,
-        LocalDate.of(2019, 5, 12) to 4.3F,
-        LocalDate.of(2019, 5, 13) to 4F,
-        LocalDate.of(2019, 5, 14) to 4F,
-        LocalDate.of(2019, 5, 15) to 4.3F
+        "2019-05-11" to 4F,
+        "2019-05-12" to 4.3F,
+        "2019-05-13" to 4F,
+        "2019-05-14" to 4F,
+        "2019-05-15" to 4.3F
     ),
     Color.RED
 )
