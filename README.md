@@ -1,7 +1,7 @@
 CalendarTrendView
 =================
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html) [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16) [![Download](https://api.bintray.com/packages/lukelorusso/maven/com.lukelorusso:calendartrendview/images/download.svg?version=1.1.4) ](https://bintray.com/lukelorusso/maven/com.lukelorusso:calendartrendview/1.1.4/link)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html) [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16) [![Download](https://api.bintray.com/packages/lukelorusso/maven/com.lukelorusso:calendartrendview/images/download.svg?version=1.1.5) ](https://bintray.com/lukelorusso/maven/com.lukelorusso:calendartrendview/1.1.5/link)
 
 ## Presentation ##
 
@@ -25,9 +25,9 @@ With CalendarTrendView you can show a meaningful "trend graph" (a cartesian x,y 
 In this example you see the evolution of 4 behaviours, or "Trends".  
 Each `Trend` is a class with:  
 * a label
-* an `HashMap<LocalDate, Float?>`
+* an `HashMap<String, Float?>` where `String` is a date in a predefined format pattern
 * a color
-* (eventually) the weight (thickness) of our line in dp
+* [optional] the weight (thickness) of our line in dp
 
 - - -
 
@@ -36,7 +36,7 @@ Each `Trend` is a class with:
 Make sure to include the library in your app's build.gradle:
 
 ```groovy
-    implementation 'com.lukelorusso:calendartrendview:1.1.4'
+    implementation 'com.lukelorusso:calendartrendview:1.1.5'
 ```  
 
 Add the view to your layout:
@@ -82,7 +82,7 @@ val trend = CalendarTrendView.Trend(
 )
 ```  
 
-You can create a `List<Trend>` to set.  
+You can also define a `List<Trend>` to show.  
 Remember that your value is a Float, but can also be unknown (null).
 
 Let's customize our view a little more:  
@@ -94,6 +94,11 @@ calendarTrendView.xUnitMeasureInDp = context.dpToPixel(25F) // if you don't like
 calendarTrendView.yUnitMeasureInDp = context.dpToPixel(22F) // ...using XML attributes
 calendarTrendView.labelTypeFace = ResourcesCompat.getFont(this, R.font.proxima_nova_regular) // you can choose a font for days' labels
 calendarTrendView.lineWeightsInDp = 4F // the global "thickness"; however, each Trend can override this with its own lineWeightsInDp
+```  
+
+If you need to adopt another date format just let the view know it:
+```kotlin
+calendarTrendView.dateFormatPattern = "dd/MM/yyyy" // or any other pattern you like
 ```  
 
 Time to add our Trend:
@@ -124,7 +129,7 @@ val setOfDates = calendarTrendView.getUniqueDates()
 
 This is a useful way to get today's LocalDate:
 ```kotlin
-val todayLocalDate = calendarTrendView.today()
+val todayLocalDate = todayToLocalDate()
 ```  
 
 - - -

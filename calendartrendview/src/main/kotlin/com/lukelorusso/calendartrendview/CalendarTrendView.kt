@@ -8,11 +8,7 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import com.lukelorusso.simplepaperview.SimplePaperView
 import org.threeten.bp.LocalDate
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneOffset
-import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.TextStyle
-import java.util.Calendar
 import kotlin.math.max
 
 /**
@@ -48,8 +44,7 @@ class CalendarTrendView constructor(context: Context, attrs: AttributeSet) : Sim
     var monthLabelColor = Color.BLACK
     var todayLabelColor = Color.BLACK
     var labelTypeFace: Typeface? = null
-    var zoneOffset: ZoneOffset = ZoneOffset.of("+01:00")
-    var dateTimeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    var dateFormatPattern: String = "yyyy-MM-dd"
 
     init {
         invertY = true
@@ -84,13 +79,13 @@ class CalendarTrendView constructor(context: Context, attrs: AttributeSet) : Sim
     /**
      * Object for this class.
      * @param label The label for the trend.
-     * @param values HashMap of date-value in the form of: <"yyyy-MM-dd", 1.0F>.
+     * @param valueMap HashMap of date-value in the form of: <"yyyy-MM-dd", 1.0F>.
      * @param color The color hor the trend.
      * @param lineWeightInDp The line weight.
      */
     class Trend(
         var label: String,
-        var values: HashMap<String, Float?> = hashMapOf(),
+        var valueMap: HashMap<String, Float?> = hashMapOf(),
         var color: Int = Color.BLACK,
         var lineWeightInDp: Float? = null
     )
@@ -140,12 +135,11 @@ class CalendarTrendView constructor(context: Context, attrs: AttributeSet) : Sim
     fun getUniqueDates(): Set<LocalDate> {
         var setOfDates = mutableSetOf<LocalDate>()
         trends.forEach { trend ->
-            trend.values.forEach { value ->
-                val date = LocalDate.parse(value.key.subSequence(0, 10), dateTimeFormatter)
-                setOfDates.add(date)
+            trend.valueMap.forEach { value ->
+                setOfDates.add(value.key.toLocalDate(dateFormatPattern))
             }
         }
-        if (showToday) setOfDates.add(today())
+        if (showToday) setOfDates.add(todayToLocalDate())
         setOfDates = setOfDates.toSortedSet()
 
         if (setOfDates.size < numberOfDaysToShowAtLeast) {
@@ -158,11 +152,6 @@ class CalendarTrendView constructor(context: Context, attrs: AttributeSet) : Sim
         setOfDates = setOfDates.toSortedSet()
 
         return setOfDates.sorted().toSet()
-    }
-
-    fun today(): LocalDate {
-        val now = Calendar.getInstance().timeInMillis
-        return LocalDateTime.ofEpochSecond(now / 1000, 0, zoneOffset).toLocalDate()
     }
     //endregion
 
@@ -179,15 +168,16 @@ class CalendarTrendView constructor(context: Context, attrs: AttributeSet) : Sim
 
         // Collecting all the trend lines to draw
         for (trend in trends) {
-            val values = trend.values.toSortedMap()
+            val sortedMap = hashMapOf<LocalDate, Float?>().apply {
+                trend.valueMap.forEach{ entry -> this[entry.key.toLocalDate(dateFormatPattern)] = entry.value }
+            }.toSortedMap()
             var lastValue = 0F // used to know where to start drawing a value's line
             var countFromFirstDay = 0 // will concur to the "numberOfStepLines"
             var lastDrawnCount = 0
             var i = 0 // is the count of the values inside a trend
-            for ((key, value) in values) {
+            for ((key, value) in sortedMap) {
                 i++
-                val date = LocalDate.parse(key.subSequence(0, 10), dateTimeFormatter)
-                countFromFirstDay = setOfDates.indexOf(date) + 1
+                countFromFirstDay = setOfDates.indexOf(key) + 1
                 var croppedValue: Float
                 value?.also {
 
@@ -268,7 +258,7 @@ class CalendarTrendView constructor(context: Context, attrs: AttributeSet) : Sim
             // Creating day and month labels
             if (i > 0) {
                 val date = setOfDates.elementAt(i - 1)
-                val isToday = date == today()
+                val isToday = date == todayToLocalDate()
 
                 // Today particular case
                 if (isToday) {
