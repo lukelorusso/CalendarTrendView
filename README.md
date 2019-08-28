@@ -1,7 +1,7 @@
 CalendarTrendView
 =================
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html) [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16) [![Download](https://api.bintray.com/packages/lukelorusso/maven/com.lukelorusso:calendartrendview/images/download.svg?version=1.1.5) ](https://bintray.com/lukelorusso/maven/com.lukelorusso:calendartrendview/1.1.5/link)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html) [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16) [![Download](https://api.bintray.com/packages/lukelorusso/maven/com.lukelorusso:calendartrendview/images/download.svg?version=1.1.6) ](https://bintray.com/lukelorusso/maven/com.lukelorusso:calendartrendview/1.1.6/link)
 
 ## Presentation ##
 
@@ -36,7 +36,7 @@ Each `Trend` is a class with:
 Make sure to include the library in your app's build.gradle:
 
 ```groovy
-    implementation 'com.lukelorusso:calendartrendview:1.1.5'
+    implementation 'com.lukelorusso:calendartrendview:1.1.6'
 ```  
 
 Add the view to your layout:

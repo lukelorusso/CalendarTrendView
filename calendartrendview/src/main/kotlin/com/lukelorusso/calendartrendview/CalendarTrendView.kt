@@ -8,13 +8,13 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import com.lukelorusso.simplepaperview.SimplePaperView
 import org.threeten.bp.LocalDate
-import org.threeten.bp.format.TextStyle
 import kotlin.math.max
 
 /**
  * Show a cartesian trend graph based on calendar dates
  */
-class CalendarTrendView constructor(context: Context, attrs: AttributeSet) : SimplePaperView(context, attrs) {
+class CalendarTrendView constructor(context: Context, attrs: AttributeSet) :
+    SimplePaperView(context, attrs) {
 
     companion object {
         private const val DEFAULT_MAX_VALUE = 10F
@@ -52,12 +52,19 @@ class CalendarTrendView constructor(context: Context, attrs: AttributeSet) : Sim
         // Load the styled attributes and set their properties
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.CalendarTrendView, 0, 0)
         startFrom =
-            StartFrom.values()[attributes.getInt(R.styleable.CalendarTrendView_ctv_startFrom, startFrom.ordinal)]
+            StartFrom.values()[attributes.getInt(
+                R.styleable.CalendarTrendView_ctv_startFrom,
+                startFrom.ordinal
+            )]
         showToday = attributes.getBoolean(R.styleable.CalendarTrendView_ctv_showToday, showToday)
-        stepLineColor = attributes.getColor(R.styleable.CalendarTrendView_ctv_stepLineColor, stepLineColor)
-        dayLabelColor = attributes.getColor(R.styleable.CalendarTrendView_ctv_dayLabelColor, dayLabelColor)
-        monthLabelColor = attributes.getColor(R.styleable.CalendarTrendView_ctv_monthLabelColor, monthLabelColor)
-        todayLabelColor = attributes.getColor(R.styleable.CalendarTrendView_ctv_todayLabelColor, todayLabelColor)
+        stepLineColor =
+            attributes.getColor(R.styleable.CalendarTrendView_ctv_stepLineColor, stepLineColor)
+        dayLabelColor =
+            attributes.getColor(R.styleable.CalendarTrendView_ctv_dayLabelColor, dayLabelColor)
+        monthLabelColor =
+            attributes.getColor(R.styleable.CalendarTrendView_ctv_monthLabelColor, monthLabelColor)
+        todayLabelColor =
+            attributes.getColor(R.styleable.CalendarTrendView_ctv_todayLabelColor, todayLabelColor)
         xUnitMeasureInDp =
             context.pixelToDp(
                 attributes.getDimensionPixelSize(
@@ -169,7 +176,9 @@ class CalendarTrendView constructor(context: Context, attrs: AttributeSet) : Sim
         // Collecting all the trend lines to draw
         for (trend in trends) {
             val sortedMap = hashMapOf<LocalDate, Float?>().apply {
-                trend.valueMap.forEach{ entry -> this[entry.key.toLocalDate(dateFormatPattern)] = entry.value }
+                trend.valueMap.forEach { entry ->
+                    this[entry.key.toLocalDate(dateFormatPattern)] = entry.value
+                }
             }.toSortedMap()
             var lastValue = 0F // used to know where to start drawing a value's line
             var countFromFirstDay = 0 // will concur to the "numberOfStepLines"
@@ -294,10 +303,7 @@ class CalendarTrendView constructor(context: Context, attrs: AttributeSet) : Sim
 
                 labelsToDraw.add(
                     TextLabel(
-                        date.month.getDisplayName(
-                            TextStyle.FULL,
-                            resources.configuration.locales[0]
-                        ).substring(0, 3).toUpperCase(),
+                        date.month.getDisplayName(resources).substring(0, 3).toUpperCase(),
                         8F,
                         bx,
                         12F,

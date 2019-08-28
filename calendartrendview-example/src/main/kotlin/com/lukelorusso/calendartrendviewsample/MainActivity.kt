@@ -139,12 +139,21 @@ class MainActivity : AppCompatActivity() {
             calendarTrendView.todayLabelColor = calendarTrendView.dayLabelColor
         }
         calendarTrendView.setTrends(trends.toMutableList()) // in this way I set a copy of my list
-        calendarTrendView.setOnDrawListener { calendarScrollView.post { calendarScrollView.fullScroll(View.FOCUS_RIGHT) } }
+        calendarTrendView.setOnDrawListener {
+            calendarScrollView.post {
+                calendarScrollView.fullScroll(
+                    View.FOCUS_RIGHT
+                )
+            }
+        }
 
         createRatioButtons()
 
         mainBtnAddValues.setOnClickListener {
-            addTrendValues(todayToLocalDate().parseToString(MY_DATE_PATTERN), listOf(10F, 10F, 10F, 10F))
+            addTrendValues(
+                todayToLocalDate().parseToString(MY_DATE_PATTERN),
+                listOf(10F, 10F, 10F, 10F)
+            )
         }
     }
 
@@ -158,7 +167,11 @@ class MainActivity : AppCompatActivity() {
                 setTextColor(colors[i])
             }
             checkBox.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) trends.forEach { trend -> if (label == trend.label) calendarTrendView.addTrend(trend) }
+                if (isChecked) trends.forEach { trend ->
+                    if (label == trend.label) calendarTrendView.addTrend(
+                        trend
+                    )
+                }
                 else calendarTrendView.removeTrendByLabel(label)
             }
             calendarTrendsCheckGroup.addView(checkBox)
