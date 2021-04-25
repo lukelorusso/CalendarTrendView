@@ -8,6 +8,7 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import com.lukelorusso.simplepaperview.SimplePaperView
 import org.threeten.bp.LocalDate
+import java.util.*
 import kotlin.math.max
 
 /**
@@ -303,7 +304,10 @@ class CalendarTrendView constructor(context: Context, attrs: AttributeSet) :
 
                 labelsToDraw.add(
                     TextLabel(
-                        date.month.getDisplayName(resources).substring(0, 3).toUpperCase(),
+                        date.month
+                            .getDisplayName(resources)
+                            .substring(0, 3)
+                            .toUpperCase(Locale.getDefault()),
                         8F,
                         bx,
                         12F,

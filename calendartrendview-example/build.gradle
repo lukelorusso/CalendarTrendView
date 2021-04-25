@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.ben-manes.versions'
 
 android {
@@ -12,6 +11,10 @@ android {
         targetSdkVersion androidTargetSdkVersion
         versionCode androidVersionCode
         versionName androidVersionName
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     buildTypes {
