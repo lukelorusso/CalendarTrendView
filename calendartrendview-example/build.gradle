@@ -1,21 +1,25 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.ben-manes.versions'
 
 android {
-    compileSdkVersion androidCompileSdkVersion
+    compileSdkVersion androidTargetSdkVersion
+
     defaultConfig {
-        applicationId "com.lukelorusso.calendartrendview"
+        applicationId "com.lukelorusso.calendartrendviewsample"
         minSdkVersion androidMinSdkVersion
         targetSdkVersion androidTargetSdkVersion
         versionCode androidVersionCode
         versionName androidVersionName
     }
+
     buildTypes {
         release {
             minifyEnabled false
         }
     }
+
     sourceSets {
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
         main.java.srcDirs += 'src/main/kotlin'
@@ -28,4 +32,7 @@ dependencies {
     implementation kotlinStdlib
     implementation androidXAppCompat
     implementation threeTenABP
+
+    // DEPENDENCY CHECK STRATEGY
+    dependencyUpdates.resolutionStrategy dependencyUpdatesStrategy
 }

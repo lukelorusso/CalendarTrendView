@@ -2,35 +2,47 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
 ext {
 
     // APP VERSION
-    androidVersionCode          = 8
-    androidVersionName          = '1.1.6' // REMEMBER: also update README.md (all instances)
+    androidVersionCode          = 9
+    androidVersionName          = '1.1.7' // REMEMBER: also update README.md
 
     // ANDROID VERSION
-    androidCompileSdkVersion    = 28
     androidMinSdkVersion        = 16
-    androidTargetSdkVersion     = 28
+    androidTargetSdkVersion     = 30
 
     // KOTLIN
     kotlinStdlib                = "org.jetbrains.kotlin:kotlin-stdlib:${ext.kotlin_version}"
 
     // ANDROID LIB
-    androidAppCompatXVersion    = '1.0.2'
-    androidXAppCompat           = "androidx.appcompat:appcompat:$androidAppCompatXVersion"
+    androidXAppCompat           = "androidx.appcompat:appcompat:1.2.0"
 
     // THREE TEN ABP
-    threeTenABPVersion          = '1.2.1'
-    threeTenABP                 = "com.jakewharton.threetenabp:threetenabp:$threeTenABPVersion"
+    threeTenABP                 = "com.jakewharton.threetenabp:threetenabp:1.3.1"
 
     // LUKE LORUSSO
-    simplePaperViewVersion      = '1.1.2'
-    simplePaperViewGroupId      = "com.lukelorusso"
-    simplePaperViewArtifactId   = "simplepaperview"
+    simplePaperViewVersion      = '1.1.5'
+    simplePaperViewGroupId      = "com.github.lukelorusso"
+    simplePaperViewArtifactId   = "SimplePaperView"
     simplePaperView             = "$simplePaperViewGroupId:$simplePaperViewArtifactId:$simplePaperViewVersion"
+
+    // DEPENDENCY CHECK STRATEGY
+    dependencyUpdatesStrategy = {
+        componentSelection { rules ->
+            rules.all { ComponentSelection selection ->
+                boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm'].any { qualifier ->
+                    selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
+                }
+                if (rejected) {
+                    selection.reject('Release candidate')
+                }
+            }
+        }
+    }
 
 }
