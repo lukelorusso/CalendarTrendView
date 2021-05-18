@@ -1,7 +1,8 @@
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        gradlePluginPortal()
         maven { url 'https://jitpack.io' }
     }
 }
@@ -9,8 +10,8 @@ allprojects {
 ext {
 
     // APP VERSION
-    androidVersionCode          = 9
-    androidVersionName          = '1.1.7' // REMEMBER: also update README.md
+    androidVersionCode          = 10
+    androidVersionName          = '1.1.8' // REMEMBER: also update README.md
 
     // ANDROID VERSION
     androidMinSdkVersion        = 16
@@ -26,7 +27,7 @@ ext {
     threeTenABP                 = "com.jakewharton.threetenabp:threetenabp:1.3.1"
 
     // LUKE LORUSSO
-    simplePaperViewVersion      = '1.1.5'
+    simplePaperViewVersion      = '1.1.6'
     simplePaperViewGroupId      = "com.github.lukelorusso"
     simplePaperViewArtifactId   = "SimplePaperView"
     simplePaperView             = "$simplePaperViewGroupId:$simplePaperViewArtifactId:$simplePaperViewVersion"

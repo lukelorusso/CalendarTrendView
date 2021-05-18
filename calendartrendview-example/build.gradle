@@ -5,16 +5,16 @@ apply plugin: 'com.github.ben-manes.versions'
 android {
     compileSdkVersion androidTargetSdkVersion
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
         applicationId "com.lukelorusso.calendartrendviewsample"
         minSdkVersion androidMinSdkVersion
         targetSdkVersion androidTargetSdkVersion
         versionCode androidVersionCode
         versionName androidVersionName
-    }
-
-    buildFeatures {
-        viewBinding true
     }
 
     buildTypes {

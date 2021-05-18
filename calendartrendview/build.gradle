@@ -8,15 +8,15 @@ group = 'com.github.lukelorusso'
 android {
     compileSdkVersion androidTargetSdkVersion
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
         minSdkVersion androidMinSdkVersion
         targetSdkVersion androidTargetSdkVersion
         versionCode androidVersionCode
         versionName androidVersionName
-    }
-
-    buildFeatures {
-        viewBinding true
     }
 
     buildTypes {

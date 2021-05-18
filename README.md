@@ -47,7 +47,7 @@ allprojects {
 Step 2. add the dependency:
 
 ```groovy
-    implementation 'com.github.lukelorusso:CalendarTrendView:1.1.7'
+    implementation 'com.github.lukelorusso:CalendarTrendView:1.1.8'
 ```
 
 That's it!

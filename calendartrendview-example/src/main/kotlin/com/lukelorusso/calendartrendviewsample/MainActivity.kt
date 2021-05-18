@@ -19,19 +19,14 @@ class MainActivity : AppCompatActivity() {
         private const val MY_DATE_PATTERN = "dd/MM/yyyy"
     }
 
-    private lateinit var binding: ActivityMainBinding
+    private val binding by viewBinding(ActivityMainBinding::inflate)
     private var colors = listOf<Int>()
     private var labels = listOf<String>()
     private var trends = listOf<CalendarTrendView.Trend>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        ActivityMainBinding.inflate(layoutInflater).also { inflated ->
-            binding = inflated
-            setContentView(binding.root)
-        }
+        setContentView(binding.root)
 
         initData()
         initView()
